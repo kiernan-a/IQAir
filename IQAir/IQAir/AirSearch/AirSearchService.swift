@@ -22,7 +22,8 @@ struct AirSearchService {
     private let location = CLLocationManager()
     
     
-    public func airSearch(lat: Double, long: Double, completion: @escaping (loadingState) -> Void) async -> LocationSearch{
+//    public func airSearch(lat: Double, long: Double, completion: @escaping (loadingState) -> Void) async -> LocationSearch{
+    public func airSearch(lat: Double, long: Double) async -> LocationSearch{
         print("airSearch()")
         
         //URL that we are making request to, confirming that it is valid, otherwise throwing an error to indicate something wrong during GET request
@@ -36,10 +37,10 @@ struct AirSearchService {
             print("made it past (data, _)")
             let citySearch =  try JSONDecoder().decode(LocationSearch.self, from: data)
             print("made it past decoder")
-            completion(loadingState.success)
+//            completion(loadingState.success)
             return citySearch
         } catch {
-            completion(loadingState.error)
+//            completion(loadingState.error)
             fatalError("Invalid data")
         }
         }

@@ -18,7 +18,7 @@ class AirSearchViewModel: ObservableObject {
     func searchAir() async {
         print("searchAir()")
         Task {
-            let airqual = try await service.airSearch(lat: 30, long: 80, completion: searchStateHandler)
+            let airqual = try await service.airSearch(lat: 30, long: 80) //, completion: searchStateHandler)
             self.search = airqual
             
         }
@@ -26,22 +26,22 @@ class AirSearchViewModel: ObservableObject {
     
 }
 
-extension AirSearchViewModel {
-    func searchStateHandler(state: loadingState) -> Void{
-        switch state {
-        case .success:
-            self.state = loadingState.success
-            self.stateString = "Successfully loaded air quality"
-        case .error:
-            self.state = loadingState.error
-            self.stateString = "Encountered error"
-        case .loading:
-            self.state = loadingState.loading
-            self.stateString = "Loading data"
-        }
-    }
-    
-}
+//extension AirSearchViewModel {
+//    func searchStateHandler(state: loadingState) -> Void{
+//        switch state {
+//        case .success:
+//            self.state = loadingState.success
+//            self.stateString = "Successfully loaded air quality"
+//        case .error:
+//            self.state = loadingState.error
+//            self.stateString = "Encountered error"
+//        case .loading:
+//            self.state = loadingState.loading
+//            self.stateString = "Loading data"
+//        }
+//    }
+//
+//}
 
 enum loadingState {
     //    case loading(message: String)
